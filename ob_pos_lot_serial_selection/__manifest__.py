@@ -1,0 +1,25 @@
+
+{
+    "name" : "POS Lot Selection and Restrict Negative Stock Product",
+    "description": """Using this module you can select LOT/Serial in POS Restrict Negative Stock Product """,
+    'summary': 'Using this module you can select LOT/Serial in POS Restrict Negative Stock Product.',
+    'category': 'Point of Sale',
+    'version': '14.1.1.1',
+    'sequence': 1,
+    'author': 'ODOOBRIDGE',
+    'price': 30,
+    'currency': 'EUR',
+    'license': 'OPL-1', 
+    "depends" : ['point_of_sale', 'product_expiry'],
+    "data": [
+        'views/point_of_sale.xml',
+    ],
+    'css': [],
+    'js': [],
+    'demo': [],
+    'qweb': ['static/src/xml/point_of_sale.xml'],
+    'images': ['static/description/main_screenshot.png'],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+}

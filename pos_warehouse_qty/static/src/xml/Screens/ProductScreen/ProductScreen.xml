@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ProductScreen" t-inherit="point_of_sale.ProductScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('rightpane')]" position="replace">
+             <div class="rightpane" t-if="!env.isMobile || mobile_pane === 'right'">
+                 <t t-if="state.warehouse_mode">
+                     <div class="flex-container">
+                         <WarehouseScreen displayData="state.warehouseData" productName="state.title"/>
+                     </div>
+                 </t>
+                 <t t-else="">
+                    <ProductsWidget t-if="!state.cashControl"/>
+                    <t t-if="env.isMobile">
+                        <MobileOrderWidget pane="mobile_pane" t-on-switchpane="switchPane"/>
+                    </t>
+                 </t>
+             </div>
+        </xpath>
+    </t>
+
+</templates>

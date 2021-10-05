@@ -1,0 +1,288 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+
+<section class='oe_container '>
+    <section class="oe_container lead">
+        <div class="panel oe_spaced">
+            <h2 class="oe_slogan" style="color:#875A7B;">
+               Create Product From POS
+            </h2>
+            <h3 class="oe_slogan">
+                    Create products directly from POS on the fly and keep the customers queue moving.
+                    The module lets you create and add the product to the cart directly from the POS session.
+            </h3>
+        </div>
+        <div style="padding:12px" >
+            <div  class="oe_demo img-responsive oe_screenshot" style="padding:8px;">
+                <a href="create_product.gif">
+                    <img src="create_product.gif">
+                </a>
+            </div>
+        </div>
+        <div class="panel panel-primary" id="wkid0">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil-square-o "/><b>
+                    <i class="fa fa-mail-forward"></i> Features:</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-unstyled ">
+                    <li><i class="fa fa-check text-primary"></i> A seller can create from Odoo POS at any time in POS Session.</li>
+                    <li><i class="fa fa-check text-primary"></i> A seller can create new product in offline mode also</li>
+                    <li><i class="fa fa-check text-primary"></i> No Backend configuration, just install and use.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel ">
+            <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-pencil-square-o "/><b><b>By Default, You Cannot Create Product From POS In Odoo!!</b></h3>
+            </div>
+            <p style='margin-left:5%;'>
+                    Inherently, there is no option to create a product from POS during a running session. The products can only be created in Odoo backend and selected while running the POS session. To add a new product to the POS, the product needs to be created at the backend and then the POS session reloaded.
+            </p>
+        </div>
+        <div class="panel ">
+                <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-pencil-square-o "/><b><b>What Does "Create Product From POS" Does?</b></h3>
+                </div>
+                <p style='margin-left:5%;'>
+                    As the name suggests, Odoo Create Product From POS module allows you to create a product from Odoo POS directly during a running session. The product can be instantly created in Odoo POS and used in the cart in a running session &amp; also saved at the Odoo backend.</p>
+            </div>
+        <div class="panel ">
+            <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-pencil-square-o "/><b><b>Problems Fixed Through The Module:</b></h3>
+            </div>
+            <span style='margin-left:5%;'>
+                <i class="fa fa-2x fa-hand-o-right"></i> <b style="font-size: 16px;margin-left: 5px;position: relative;bottom: 2px;">No settings to Create product directly in Odoo POS running session</b>
+            </span>
+                <p style='margin-left:5%;'>There is no feature available in default POS operational settings to create a product directly in Odoo POS running session. The POS user first needs to create the product in the Odoo backend then reload the POS session. Only then, the product becomes available in the Odoo POS. The module cut-shorts and lets you create the product in the POS session itself and it to the cart simultaneously
+            </p>
+            <span style='margin-left:5%;'>
+                <i class="fa fa-2x fa-hand-o-right"></i> <b style="font-size: 16px;margin-left: 5px;position: relative;bottom: 2px;">No Product exists in the Odoo POS for a scanned barcode</b>
+            </span>
+            <p style='margin-left:5%;'>
+                In case the POS returns no result for a scanned barcode of a product, the POS user can easily create the corresponding product associated with the barcode instantaneously from the running POS session. No need close the POS and go to the Odoo backend.
+            </p>
+        </div>
+        <div class="panel  ">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil-square-o "/><b><b>What happens If the POS is running In Offline Mode?</b></h3>
+            </div>
+            <p style='margin-left:5%;'>The module works even when the POS is running offline. The seller can create the product and add it to the cart in online as well as in offline mode and validate the order with the newly created product. However, the product would only be synced and saved in the Odoo backend when the POS comes online.
+            </p>
+        </div>
+    </section>
+
+    <br/>
+    <br/>
+    <section class="oe_container">
+        <div id="my-tab-content" class="">
+            <div class="active" id="pos_session_view">
+                <h2 style='text-align: center;'>
+                    <i class="fa fa-globe"></i> POS Session View</h2>
+                <section class="oe_container">
+                    <div class="panel panel-primary" id="wkid0">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <b>Create Product In Running Sesiion</b>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-info">
+                                <i class="fa fa-arrow-circle-o-right"></i>
+                                <b>Button to create product</b>
+                            </div>
+                            <p>
+                              Seller can create product at any time in running session by clicking this button.
+                            </p>
+                            <div style="padding:12px" >
+                                <div  class="oe_demo img-responsive oe_screenshot" style="padding:8px;">
+                                    <a href="scrn1.0.jpg">
+                                        <img src="scrn1.0.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-info">
+                                <i class="fa fa-arrow-circle-o-right"></i>
+                                <b>Create product if scanned barcode is not associated with any product</b>
+                            </div>
+                            <p>
+                                If seller scan some product barcode &amp; scanned barcode is not associated with any product then seller
+                                can create a new product associated to the scanned barcode in running session by cliking 'Create Product'
+                                button as shown in below screenshot.
+                            </p>
+                            <div style="padding:12px" >
+                                <div  class="oe_demo img-responsive oe_screenshot" style="padding:8px;">
+                                    <a href="scrn1.1.jpg">
+                                        <img src="scrn1.1.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="oe_container">
+                    <div class="panel panel-primary" id="wkid0">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <b>Fill Product details &amp; create product</b>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-info">
+                                <i class="fa fa-arrow-circle-o-right"></i>
+                                <b>Fill Product basic details</b>
+                            </div>
+                            <p>
+                              These are the basis details are required to create a product.
+                            </p>
+                            <div style="padding:12px" >
+                                <div  class="oe_demo img-responsive oe_screenshot" style="padding:8px;">
+                                    <a href="scrn2.jpg">
+                                        <img src="scrn2.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-info">
+                                <i class="fa fa-arrow-circle-o-right"></i>
+                                <b>Fill Product other details</b>
+                            </div>
+                            <p>
+                                These details are optional details, seller can fill these details also
+                            </p>
+                            <div style="padding:12px" >
+                                <div  class="oe_demo img-responsive oe_screenshot" style="padding:8px;">
+                                    <a href="scrn3.jpg">
+                                        <img src="scrn3.jpg">
+                                    </a>
+                                </div>
+                                <div  class="oe_demo img-responsive oe_screenshot" style="padding:8px;">
+                                    <a href="scrn4.jpg">
+                                        <img src="scrn4.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="oe_container">
+                    <div class="panel panel-primary" id="wkid0">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <b>Product Created &amp; Added to the product list</b>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-info">
+                                <i class="fa fa-arrow-circle-o-right"></i>
+                                <b>Created Product added to the product list</b>
+                            </div>
+                            <p>
+                                Once product is created, it will be added to the product list as shown in below screenshot.
+                            </p>
+                            <div style="padding:12px" >
+                                <div  class="oe_demo img-responsive oe_screenshot" style="padding:8px;">
+                                    <a href="scrn5.jpg">
+                                        <img src="scrn5.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-info">
+                                <i class="fa fa-arrow-circle-o-right"></i>
+                                <b>Created Product &amp; add to the product list</b>
+                            </div>
+                            <p>
+                                If clear click on 'Create &amp; Add Product' button then product will be automatically added to the cart
+                                as shown in below screenshot.
+                            </p>
+                            <div style="padding:12px" >
+                                <div  class="oe_demo img-responsive oe_screenshot" style="padding:8px;">
+                                    <a href="scrn6.jpg">
+                                        <img src="scrn6.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="oe_container">
+                    <div class="panel panel-primary" id="wkid0">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <b>Created Product Saved In Backend</b>
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-info">
+                                <i class="fa fa-arrow-circle-o-right"></i>
+                                <b>Product Saved in backend</b>
+                            </div>
+                            <div style="padding:12px" >
+                                <div  class="oe_demo img-responsive oe_screenshot" style="padding:8px;">
+                                    <a href="scrn7.jpg">
+                                        <img src="scrn7.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>
+
+<section class="pt32" id="webkul_support">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">Help and Support</h2>
+            <p class="mb-2 text-center" style="font-size:16px; color:#333; font-weight:400">Get Immediate support for any of your query</p>
+        </div>
+        <div class="col-12">
+            <p class="text-center px-5" style="font-size:14px; color:#555; font-weight:normal">You will get 90 days free support for any doubt, queries, and bug fixing (excluding data recovery) or any type of issue related to this module.</p>
+        </div>
+        <div class="mx-auto col-lg-9 mb-4 oe_screenshot">
+            <div class="row align-items-center justify-content-center mx-0 p-3">
+                <div class="col-sm-2 text-center pr-0">
+                    <img src="mail.png" alt="mail" class="img img-fluid">
+                </div>
+                <div class="col-xl-7 col-sm-10">
+                    <p class="my-2" style="color:#555; font-weight:bold">Write a mail to us:</p>
+                    <b class="text-primary" style="font-size:18px">support@webkul.com</b>
+                    <p class="my-2" style="font-size:14px; color:#777; font-weight:normal">Any queries or want any extra features? Just drop a mail to our support.</p>
+                </div>
+                <div class="col-xl-3 offset-xl-0 float-xl-right col-sm-10 offset-sm-2 float-left mt16">
+                    <a href="mailto:support@webkul.com" style="padding:10px 22px; background-color:#2335D7; font-size:14px; color:#fff"><i class="fa fa-pencil-square-o" style="color:white; margin-right:4px"></i>Write To US</a>
+                </div>
+            </div>
+        </div>
+        <div class="mx-auto col-lg-9 oe_screenshot">
+            <div class="row align-items-center justify-content-center mx-0 p-3">
+                <div class="col-sm-2 text-center pr-0">
+                    <img src="support-icon.png" alt="support-icon" class="img img-fluid">
+                </div>
+                <div class="col-sm-10 ">
+                    <p class="my-2" style="font-weight:bold; color:#555">Get in touch with our Expert:</p>
+                    <b class="text-primary text-break" style="font-size:18px">https://webkul.uvdesk.com/en/customer/create-ticket/</b>
+                    <p class="my-2" style="font-weight:normal; font-size:14px; color:#777">Have any technical queries, want extra features, or anything else? Our team is here to answer all your questions. Just Raise A Support Ticket.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+ </section>
+
+
+    <section class="oe_container">
+        <div class="panel oe_spaced">
+            <!-- Piwik Image Tracker-->
+            <img src="http://odooimg.webkul.com/analytics/piwik/piwik.php?idsite=3&rec=1&action_name=CREATE-PRODUCT-FROM-POS&url=https://apps.openerp.com/apps/modules/12.0/pos_create_product&uid=pos_create_product" style="border:0" alt="" />
+            <!-- End Piwik -->
+        </div>
+    </section>

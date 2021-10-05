@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	
+	<t t-name="EditListPopup1" owl="1">
+		<div role="dialog" class="modal-dialog">
+			<div class="popup popup-text" style="max-width: 700px;">
+				<header class="title">
+					<t t-esc="props.title" />
+				</header>
+				<div class="body">
+					<div class='div-container' style="display: flex;">
+							<div class="list-lines" t-on-remove-item="removeItem"
+							  t-on-create-new-item="createNewItem"  style="flex: 0 0 50%;">
+							<t t-foreach="state.array" t-as="item" t-key="item._id">
+								<EditListInput item="item" />
+							</t>
+						</div>
+						<div  style="flex: 1;">
+							<t t-if="env.pos.config.allow_pos_lot">
+								<t t-if="state.product_lot">
+									<div >
+										<input placeholder="Search Lot" style="width: 160px;
+											border: 1px solid #cecbcb;
+											padding: 10px 20px;
+											padding-left: 38px;
+											margin: 6px;
+											background: url(/point_of_sale/static/src/css/../img/search.png) no-repeat 15px;
+											background-color: white;
+											border-radius: 20px;
+											font-family: Helvetica, Verdana, Arial;
+											font-size: 13px;" class="search_lot" t-on-keyup="search_lot" t-att-value="state.qstr"
+											/>
+										<span class="search-clear search_lot"></span>
+									</div>
+									<div style="height: 360px;overflow: scroll;">
+										<table >
+											<colgroup>
+												<col width='50%' />
+												<col width='20%' />
+												<col width='20%' />
+												<col width='5%' />
+											</colgroup>
+											<t t-foreach="state.product_lot" t-key="product_lot.id" t-as="product_lot">
+												<t t-if="product_lot.temp_qty > 0">
+													<tr >
+														<td>
+															<div t-att-value="product_lot.id">
+																<t t-esc="product_lot.name" />
+															</div>
+														</td>
+
+														<td>
+															<span class="qty_on_hand" t-esc="product_lot.total_qty" />
+														</td>
+														
+														<td class="entered_item_qty">
+															<input type="text" class="input_qty" t-att-data-qty="product_lot.total_qty" t-att-data-lot="product_lot.name"  value="1" style="font-size: 15px;width: 52px;min-height: 9px;height: 25px;padding: -1px;"/>
+														</td>
+
+														<td>
+														   <i class="fa fa-plus-square add_lot_number" aria-hidden="true" style="color: green;font-size: 25px;cursor: pointer" 
+														   	t-att-data-lot="product_lot.name" 
+														   	t-att-data-total_qty="product_lot.total_qty"
+														   	t-att-data-temp_qty="product_lot.temp_qty"
+														   	t-on-click="addNewLotLine"
+														   	></i>
+														</td>
+
+													</tr>
+												</t>
+											</t>
+										</table>
+									</div>
+								</t>
+							</t>
+						</div>                           
+					</div>
+				</div>
+				<footer class="footer">
+					<div class="button confirm" t-on-click="confirm">
+						Ok
+					</div>
+					<div class="button cancel" t-on-click="cancel">
+						Cancel
+					</div>
+				</footer>
+			</div>
+		</div>
+	</t> 
+
+	<t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+			<xpath expr="//div[hasclass('orderlines')]" position="replace">
+				<div class="orderlines">
+					<t t-foreach="receipt.orderlines" t-as="line" t-key="line.id">
+						<t t-if="isSimple(line)">
+							<div>
+								<t t-esc="line.product_name_wrapped[0]" />
+								<span t-esc="env.pos.format_currency_no_symbol(line.price_display)" class="price_display pos-receipt-right-align"/>
+							</div>
+							<WrappedProductNameLines line="line" />
+						</t>
+						<t t-else="">
+							<div t-esc="line.product_name_wrapped[0]" />
+							<WrappedProductNameLines line="line" />
+							<t t-if="line.display_discount_policy == 'without_discount' and line.price != line.price_lst">
+								<div class="pos-receipt-left-padding">
+									<t t-esc="env.pos.format_currency_no_symbol(line.price_lst)" />
+									->
+									<t t-esc="env.pos.format_currency_no_symbol(line.price)" />
+								</div>
+							</t>
+							<t t-if="env.pos.config.pos_lot_receipt">
+								<t t-if="line.lot_details">
+									<div class="pos-receipt-left-padding">
+										Lot/Serial : 
+										<t t-foreach="line.lot_details" t-as="pack_lot_id">
+											<t t-esc="pack_lot_id.lot_name"/>,
+										</t>
+									</div>
+								</t>
+							</t>
+							<t t-elif="line.discount !== 0">
+								<div class="pos-receipt-left-padding">
+									<t t-if="env.pos.config.iface_tax_included === 'total'">
+										<t t-esc="env.pos.format_currency_no_symbol(line.price_with_tax_before_discount)"/>
+									</t>
+									<t t-else="">
+										<t t-esc="env.pos.format_currency_no_symbol(line.price)"/>
+									</t>
+								</div>
+							</t>
+							<t t-if="line.discount !== 0">
+								<div class="pos-receipt-left-padding">
+									Discount: <t t-esc="line.discount" />%
+								</div>
+							</t>
+							<div class="pos-receipt-left-padding">
+								<t t-esc="Math.round(line.quantity * Math.pow(10, env.pos.dp['Product Unit of Measure'])) / Math.pow(10, env.pos.dp['Product Unit of Measure'])"/>
+								<t t-if="line.unit_name !== 'Units'" t-esc="line.unit_name" />
+								x
+								<t t-esc="env.pos.format_currency_no_symbol(line.price_display_one)" />
+								<span class="price_display pos-receipt-right-align">
+									<t t-esc="env.pos.format_currency_no_symbol(line.price_display)" />
+								</span>
+							</div>
+						</t>
+					</t>
+				</div>
+			</xpath>
+	</t>
+</templates>

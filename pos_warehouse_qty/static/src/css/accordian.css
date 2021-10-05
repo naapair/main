@@ -1,0 +1,175 @@
+.warehouse-screen {
+  padding: 0 1em 1em;
+}
+
+.warehouse-screen .warehouse-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.warehouse-screen .warehouse-header button.close {
+    font-size: 20px;
+    line-height:32px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+.warehouse-screen .warehouse-header .title{
+    flex: 1;
+    position: relative;
+    text-align: center;
+    margin: 0.2rem;
+    margin-right: 150px;
+    font-size: 22px;
+    font-weight: bold;
+
+}
+
+.warehouse-screen input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.warehouse-screen .row {
+  display: flex;
+}
+
+.warehouse-screen .row .col {
+   flex: 1;
+}
+
+
+/* Accordion styles */
+
+.warehouse-screen .tabs {
+  overflow: hidden;
+}
+
+.warehouse-screen .tab {
+  width: 100%;
+  color: black;
+  overflow: hidden;
+}
+
+.warehouse-screen .tab-label {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+  background: #DDD;
+  border-bottom: 1px solid #ffffff6b;
+}
+
+.warehouse-screen .tab-label:hover {
+  background: white;
+}
+
+.warehouse-screen .tab-label:after {
+  content: '\002B';
+  width: 1em;
+  font-size: 28px;
+  font-weight: bold;
+  height: 1em;
+  text-align: center;
+  -webkit-transition: all .35s;
+  transition: all .35s;
+}
+
+.warehouse-screen .tab-content {
+    max-height: 0;
+  /*padding: 0 1em;*/
+  color: #2c3e50;
+  background: white;
+  -webkit-transition: all .35s;
+  transition: all .35s;
+}
+
+.warehouse-screen input:checked + .tab-label {
+  background: #6ec89b;
+  color: white;
+  font-weight: bold;
+}
+
+.warehouse-screen input:checked + .tab-label::after {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.warehouse-screen input:checked ~ .tab-content {
+  max-height: 100vh;
+  /*padding: 0 2em;*/
+}
+
+.warehouse-screen .flex-container1 {
+  display: flex;
+  width:100%;
+  flex-flow: row nowrap;
+}
+
+.warehouse-screen .flex-container1 > div {
+  width: 100%;
+  font-size: 22px;
+  text-align: center;
+  padding: 10px;
+}
+
+.warehouse-screen .flex-container1 > div:first-child {
+    text-align:left;
+}
+
+.warehouse-screen .flex-container2 {
+  display: flex;
+  background:#868686;
+  flex-flow: row nowrap;
+  color: white;
+}
+
+.warehouse-screen .flex-container2 > div {
+    width: 100%;
+    margin: 2px;
+    text-align: right;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.warehouse-screen .flex-container2 > div:first-child {
+    text-align:left;
+}
+
+.warehouse-screen .flex-container2 > div:last-child {
+    text-align: right;
+    width: 30%;
+}
+
+
+.warehouse-screen .flex-container-inner{
+  display: flex;
+  flex-flow: row nowrap;
+
+}
+.warehouse-screen .flex-container-inner > div {
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+}
+
+.warehouse-screen .flex-container-inner > div:first-child {
+    text-align:left;
+}
+
+.warehouse-screen .flex-container-inner:nth-child(even) {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.warehouse-screen .flex-container-inner:nth-child(odd) {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.pos .warehouse-icon{
+    cursor: pointer;
+    margin-left: -5px;
+}
+

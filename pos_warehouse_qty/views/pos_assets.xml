@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="warehouse_qty_assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/pos_warehouse_qty/static/src/css/accordian.css"/>
+            <script type="text/javascript" src="/pos_warehouse_qty/static/src/js/Screens/ProductScreen/ProductScreenWidget.js"></script>
+            <script type="text/javascript" src="/pos_warehouse_qty/static/src/js/Screens/ProductScreen/WarehouseScreen.js"></script>
+            <script type="text/javascript" src="/pos_warehouse_qty/static/src/js/Screens/ReceiptScreen/ReceiptScreen.js"></script>
+            <script type="text/javascript" src="/pos_warehouse_qty/static/src/js/Screens/ReceiptScreen/WarehouseReceipt.js"></script>
+        </xpath>
+    </template>
+</odoo>

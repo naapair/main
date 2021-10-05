@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_product_product_pos_manager,product.product,product.model_product_product,point_of_sale.group_pos_manager,1,1,1,1
+access_product_product_pos_user,product.product,product.model_product_product,point_of_sale.group_pos_user,1,0,0,0
+
+access_product_template_pos_manager,product.template,product.model_product_template,point_of_sale.group_pos_manager,1,1,1,1
+access_product_template_pos_user,product.template,product.model_product_template,point_of_sale.group_pos_user,1,0,0,0
+
+
+access_product_category_group_pos_manager,pos.category manager,point_of_sale.model_pos_category,point_of_sale.group_pos_manager,1,1,1,1
+access_product_category_group_pos_user,pos.category user,point_of_sale.model_pos_category,point_of_sale.group_pos_user,1,0,0,0
+
+access_product_category_pos_manager,product.category manager,product.model_product_category,point_of_sale.group_pos_manager,1,1,1,1
+access_product_category_pos_user,product.category user,product.model_product_category,point_of_sale.group_pos_user,1,0,0,0

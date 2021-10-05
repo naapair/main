@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ProductsWidgetControlPanel" t-inherit="point_of_sale.ProductsWidgetControlPanel" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('products-widget-control')]" position="inside">
+            <Portal t-if="env.pos.config.show_warehouse_qty" target="'.pos .search-bar-portal'">
+               <div class="warehouse-icon">
+                    <img src="/pos_warehouse_qty/static/src/img/warehouse.png" t-on-click="trigger('button-click')" alt="Logo" class="pos-logo"/>
+               </div>
+            </Portal>
+        </xpath>
+    </t>
+
+</templates>
+

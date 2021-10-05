@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+        <xpath expr="//span[hasclass('product-name')]" position="replace">
+            <span class="product-name">
+                <t t-if="props.line.get_product().default_code">
+                    <t t-esc="'['+props.line.get_product().default_code +'] '+ props.line.get_full_product_name()"/>
+                </t>
+                <t t-else="">
+                    <t t-esc="props.line.get_full_product_name()"/>
+                </t>
+                <span> </span>
+                <t t-if="props.line.get_product().tracking!=='none'">
+                    <t t-if="props.line.has_valid_product_lot()">
+                        <i  t-on-click.stop="lotIconClicked"
+                            class="oe_link_icon fa fa-list oe_icon line-lot-icon oe_green"
+                            aria-label="Valid product lot"
+                            role="img"
+                            title="Valid product lot"
+                        />
+                    </t>
+                    <t t-else="">
+                        <i  t-on-click.stop="lotIconClicked"
+                            class="oe_link_icon fa fa-list oe_icon line-lot-icon oe_red"
+                            aria-label="Invalid product lot"
+                            role="img"
+                            title="Invalid product lot"
+                        />
+                    </t>
+                </t>
+            </span>
+        </xpath>
+    </t>
+    <t t-name="ProductItem" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('product-name')]" position="replace">
+            <div class="product-name" t-attf-id="article_product_{{props.product.id}}">
+                <t t-if="props.product.default_code">
+                    <t t-esc="'['+props.product.default_code +'] '+ props.product.display_name"/>
+                </t>
+                <t t-else="">
+                    <t t-esc="props.product.display_name" />
+                </t>
+            </div>
+        </xpath>
+    </t>
+</templates>

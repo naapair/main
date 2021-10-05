@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+
+<templates id="template" xml:space="preserve">
+
+    <t t-name="Chrome" t-inherit="point_of_sale.Chrome" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('search-bar-portal')]" position="after">
+            <div t-on-click="create_new_product" class="wk_new_product_button">
+                <img src="/pos_create_product/static/description/create_product.png"/>
+            </div>
+        </xpath>
+    </t>
+
+	<t t-name="WkCPAlertPopUp" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup popup-confirm">
+                    <header class="title drag-handle">
+                    	<t t-esc=" props.title || 'Message' " />
+                    </header>
+                    <main class="body">
+	                    <t t-esc="  props.body || '' " />
+                    </main>
+                    <footer class="footer">
+                        <div class="button cancel" t-on-click="cancel">
+                            Ok
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+    <t t-name="ProductCreatePopupWidget" owl="1">
+		<div class="modal-dialog">
+			<div class="wk_create_product" style="padding:10px;overflow:hidden">
+                <div class="title">
+                    <i class="fa fa-times cancel" t-on-click="cancel" style="font-size:25px;float:right;margin-top:-5px;cursor:pointer" aria-hidden="true"></i>
+                </div>
+                <div style="overflow:hidden">
+                    <div class="pro_title">                
+                        <h2 style="font-size:18px">Create Product</h2>
+                    </div>
+                    <div class="body">
+						<t t-if="env">
+                            <div id="tabs" style="font-size:12px">
+                                <ul class="wk_tabs">
+                                    <li id="main_tab"  t-on-click="wk_tab_select" class="tab-link current" style=" font-size: 18px !important;"><b >Basic Info</b></li>
+                                    <li id="advance_tab"  class="tab-link" t-on-click="wk_tab_select" style=" font-size: 18px !important;"><b>Advance Details</b></li>
+                                </ul>
+                            </div> 
+                           
+                            <div id="wkmain_tab" class="tab-content current">
+
+                                <div style="float:left;text-align: left;padding-left:10%;width:90%">
+                                    <p>Name</p>
+                                    <input class="info_input name" placeholder="Product Name"/>
+                                    <p style="margin-top:11px">Price</p>
+                                    <input class="info_input price" type="number"/>
+                                    <p style="margin-top:11px">Barcode
+                                    </p>
+                                    <input class="info_input barcode"  t-att-value='props ? props.code :""'>    
+                                    </input>
+                                    <p class="wk_barcode_exist">
+                                        * Entered barcode is already exist.
+                                    </p>
+                                </div>
+                            </div>
+                            <div id="wkadvance_tab" class="tab-content ">
+                                <div>
+                                <form class="wk_form"><fieldset><legend>General Information</legend>
+                                <div style="text-align: left;">
+                                    <table class="advance_table">
+                                        <tr>
+                                            <th>Product Type</th>
+                                            <td><select class='product_type advance_details' name='product_type'>
+                                                <option value='consu'>Consumable</option>
+                                                <option value='service'>Service</option>
+                                                <option value='product'>Stockable Product</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Cost Price </th>
+                                            <td> <input class="info_input cost_price advance_details" type="number"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Category</th>
+                                            <td>    
+                                                <select class='categ_id advance_details' name='categ_id'>
+                                                    <t t-foreach='env.pos.product_categories' t-as='categ'>
+                                                        <option t-att-value='categ.id' t-att-selected="categ.id ? ((categ.id === env.pos.product_categories[0].id) ? true : undefined) : undefined"> 
+                                                            <t t-esc='categ.name'/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Internal Reference</th>
+                                            <td><input class="info_input default_code advance_details"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th>POS Category</th>
+                                            <td>    
+                                                <select class='pos_categ_id advance_details' name='categ_id'>
+                                                    <option value=''>None</option>
+                                                    <t t-foreach='env.pos.db.category_by_id' t-as='pos_categ'>
+                                                        <t t-set="pos_categ" t-value="env.pos.db.category_by_id[pos_categ]"/>
+                                                        <t t-if="pos_categ and pos_categ.id">
+                                                            <option t-att-value='pos_categ.id' > 
+                                                                <t t-esc='pos_categ.name'/>
+                                                            </option>
+                                                        </t>
+                                                    </t>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                </fieldset>
+                                </form>
+                                <form class="wk_form"><fieldset><legend>Invoicing</legend>
+                                    <div style="text-align: left">
+                                        <table class="advance_table">
+                                            <tr>
+                                                <th>Customer Taxes </th>
+                                                <td>
+                                                    <t t-foreach='env.pos.taxes' t-as='tax'>
+                                                        <t t-if="tax.type_tax_use =='sale'">
+                                                            <li>
+                                                                <input id='checkid' class="advance_table taxes" type="checkbox" t-att-value="tax.id" />
+                                                                <label for="checkid"><t t-esc="tax.name"/></label>
+                                                            </li>
+                                                        </t>
+                                                    </t>  
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </fieldset>
+                                </form>
+                            </div>
+                            </div>
+                        </t>
+                        <footer class="footer">
+                            <button t-on-click="wk_create_product" class="button create_product" style="margin-right:5%;">Create Product</button>
+                            <button t-on-click="wk_create_and_add_product" class="button create_and_add_product" >Create &amp; Add Product</button>
+                        </footer>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</t>
+
+    <t t-name="BarcodeConfirmPopupenv">
+        <div class="modal-dialog">
+            <div class="popup popup-barcode">
+                <p class="title">Unknown Barcode
+                    <br />
+                    <span class='barcode'><t t-esc="env.options.barcode" /></span>
+                </p>
+                <p class="body">
+                    The Point of Sale could not find any product associated with the scanned barcode. Please create a new product associated
+                    to this barcode
+                </p>
+                <div class="footer">
+                     <div class="button confirm">
+                        Create Product
+                    </div>
+                    <div class="button cancel">
+                        Cancel 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="SuccessNotifyPopopWidget" owl="1">
+		<div class="modal-dialog">
+			<div class="popup popup-textinput" style="border-radius:5px; height:220px" >
+				<div class="order_status" style="height:80px;width:80px;margin-top:15px;">
+					<div class="show_tick draw"></div>
+				</div>
+				<h3 style="color:#5cb85c">
+                    <!-- <t t-if="env.state and env.state.options and env.state.options.body"> -->
+                        <!-- <t t-esc="env.state.options.body || 'Product created !!!!!'"/> -->
+                    Product created successfully, Please scan product again.
+
+                    <!-- </t> -->
+                </h3>
+			</div>
+		</div>
+	</t>
+
+
+
+    <t t-name="ErrorBarcodePopup" t-inherit="point_of_sale.ErrorBarcodePopup" t-inherit-mode="extension" owl="1">
+        <xpath expr="//footer" position="inside">
+            <div class="button cancel" t-on-click="create_new_product">
+                Create New Product
+            </div>
+        </xpath>
+    </t>
+
+</templates>

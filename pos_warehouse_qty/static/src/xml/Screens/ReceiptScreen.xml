@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ReceiptScreen" t-inherit="point_of_sale.ReceiptScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('pos-receipt-container')]" position="replace">
+            <div class="pos-receipt-container">
+                <t t-if="props.check == 'from_warehouse'">
+                    <WarehouseReceipt warehouse="props.receiptData" product="props.productName" t-ref="order-receipt"/>
+                </t>
+                <t t-else="">
+                    <OrderReceipt order="currentOrder" t-ref="order-receipt" />
+                </t>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('next')]" position="replace">
+            <t t-if="props.check == 'from_warehouse'">
+                <div class="button next" t-att-class="{ highlight: !locked }"
+                            t-on-click="clickBack">
+                    <i class="fa fa-angle-double-left"></i>
+                    Back
+                </div>
+            </t>
+            <t t-else="">
+                <div class="button next" t-att-class="{ highlight: !locked }"
+                        t-on-click="orderDone">
+                        New Order <i class="fa fa-angle-double-right"></i>
+                </div>
+            </t>
+        </xpath>
+    </t>
+
+</templates>
